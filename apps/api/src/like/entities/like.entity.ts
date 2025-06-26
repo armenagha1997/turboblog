@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import {Post} from "../../post/entities/post.entity";
-import {User} from "../../user/entities/user.entity";
+import { Post } from 'src/post/entities/post.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @ObjectType()
 export class Like {
@@ -10,9 +10,9 @@ export class Like {
   @Field(() => User)
   user: User;
 
-  @Field(() => [Post])
-  posts: Post[];
+  @Field(() => Post)
+  post: Post;
 
   @Field()
-  createdAt: Date;
+  createAt: Date;
 }

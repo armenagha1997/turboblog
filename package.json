@@ -17,5 +17,8 @@
   "description": "",
   "devDependencies": {
     "turbo": "^2.5.4"
+  },
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.7"
   }
 }

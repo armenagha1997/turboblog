@@ -6,11 +6,9 @@ import { PropsWithChildren, useEffect, useState } from "react";
 type Props = PropsWithChildren;
 const DesktopNavbar = (props: Props) => {
     const [scrollPosition, setScrollPosition] = useState(0);
-    const handleScroll = () => {
-        setScrollPosition(window.scrollY);
-    };
 
     const pathname = usePathname();
+
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -18,8 +16,13 @@ const DesktopNavbar = (props: Props) => {
         };
     });
 
+    const handleScroll = () => {
+        setScrollPosition(window.scrollY);
+    };
+
     const isScrollDown = scrollPosition > 10;
     const isHome = pathname === "/";
+
     return (
         <nav
             className={cn(
