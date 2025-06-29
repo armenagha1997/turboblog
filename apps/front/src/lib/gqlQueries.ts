@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const GET_POSTS = gql`
     query posts($skip: Float, $take: Float) {
-        posts (skip: $skip, take: $take) {
+        posts(skip: $skip, take: $take) {
             id
             title
             thumbnail
@@ -11,7 +11,8 @@ export const GET_POSTS = gql`
             slug
         }
         postCount
-    }`
+    }
+`;
 
 export const GET_POST_BY_ID = gql`
     query getPostById($id: Int!) {
@@ -21,6 +22,7 @@ export const GET_POST_BY_ID = gql`
             thumbnail
             content
             createdAt
+            published
             author {
                 name
             }
@@ -30,7 +32,7 @@ export const GET_POST_BY_ID = gql`
             }
         }
     }
-`
+`;
 
 export const CREATE_USER_MUTATION = gql`
     mutation createUser($input: CreateUserInput!) {
@@ -91,5 +93,45 @@ export const LIKE_POST_MUTATION = gql`
 export const UNLIKE_POST_MUTATION = gql`
     mutation UnLikePost($postId: Int!) {
         unlikePost(postId: $postId)
+    }
+`;
+
+export const GET_USER_POSTS = gql`
+    query GetUserPosts($skip: Int, $take: Int) {
+        getUserPosts(skip: $skip, take: $take) {
+            id
+            title
+            slug
+            thumbnail
+            published
+            createdAt
+            content
+            _count {
+                like
+                comments
+            }
+        }
+        userPostCount
+    }
+`;
+export const CREATE_POST_MUTATION = gql`
+    mutation CreatePostMutation($input: CreatePostInput!) {
+        createPost(createPostInput: $input) {
+            id
+        }
+    }
+`;
+
+export const UPDATE_POST_MUTATION = gql`
+    mutation UpdatePost($input: UpdatePostInput!) {
+        updatePost(updatePostInput: $input) {
+            id
+        }
+    }
+`;
+
+export const DELETE_POST_MUTATION = gql`
+    mutation DeletePost($postId: Int!) {
+        deletePost(postId: $postId)
     }
 `;

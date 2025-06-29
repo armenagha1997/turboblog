@@ -4,7 +4,7 @@ import {PrismaService} from "../prisma/prisma.service";
 import {verify} from "argon2";
 import {JwtService} from "@nestjs/jwt";
 import {AuthJwtPayload} from "./types/auth-jwtPayload";
-import { User } from '@prisma/client';
+import PrismaClient from '@prisma/client';
 import {CreateUserInput} from "../user/dto/create-user.input";
 
 @Injectable()
@@ -32,7 +32,7 @@ export class AuthService {
         return {accessToken};
     }
 
-    async login(user: User) {
+    async login(user: PrismaClient.User) {
         const {accessToken} = await this.generateToken(user.id);
 
         return {

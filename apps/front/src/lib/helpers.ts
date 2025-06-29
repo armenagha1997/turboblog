@@ -39,9 +39,6 @@ export function calculatePageNumbers({
         if (endPage < totalPages - 1) pages = [...pages, "..."];
         return [1, ...pages, totalPages];
     }
-    console.log("totalPages", pageNeighbors,
-        totalPages,
-        currentPage)
 
     return Array.from({ length: totalPages }, (_, i) => i + 1);
 }
